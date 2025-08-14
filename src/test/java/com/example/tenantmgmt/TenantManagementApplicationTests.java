@@ -1,4 +1,4 @@
-package com.example.tenant.tenant;
+package com.example.tenantmgmt;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
