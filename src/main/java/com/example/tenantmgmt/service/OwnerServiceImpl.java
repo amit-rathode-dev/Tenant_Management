@@ -16,17 +16,28 @@ public class OwnerServiceImpl {
         this.ownerRepository = ownerRepository;
     }
 
-    public Owner getOwnerById(Long id){
-        Optional<Owner> optionalOwner = ownerRepository.findById(id);
-        return optionalOwner.get();
+    public Owner getOwnerById(Long id) {
+        return ownerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Owner not found with id: " + id));
     }
 
+
     public List<Owner> getAllOwners(){
-        return ownerRepository.findAll();
+//        return ownerRepository.findAll();
+        return ownerRepository.findByIsDeletedFalse();
     }
 
     public Owner addOwner(Owner owner){
         return ownerRepository.save(owner);
     }
+
+    public Owner deleteOwnerById(Long id) {
+        Owner owner = ownerRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Owner not found with id " + id));
+        owner.setDeleted(true);
+        return ownerRepository.save(owner);
+    }
+
+
 
 }

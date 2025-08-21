@@ -35,4 +35,12 @@ public class OwnerController {
         Owner savedOwner = ownerServiceImpl.addOwner(owner);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedOwner);
     }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Owner> deleteOwnerById(@PathVariable Long id){
+        Owner updatedOwner = ownerServiceImpl.deleteOwnerById(id);
+        return ResponseEntity.ok(updatedOwner);
+    }
+
 }
